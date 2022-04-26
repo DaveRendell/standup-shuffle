@@ -34,7 +34,7 @@ function shuffleList() {
 }
 
 function createListItem(item) {
-    return `<li><span>${item}</span> <button class="delete-button">❌</button></li>`
+    return `<li><span>${item}</span> <button class="delete-button float-right"><small>❌</small></button></li>`
 }
 
 function populateSearchQuery(items) {

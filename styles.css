@@ -12,3 +12,11 @@ main {
     border: none;
     cursor: pointer;
 }
+
+li {
+    margin: 0.25rem 0;
+}
+
+.float-right {
+    float: right;
+}
