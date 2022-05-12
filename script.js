@@ -91,9 +91,8 @@ function init() {
     document.getElementById("shuffle-form").onsubmit = submitShuffleForm
     document.getElementById("add-item-form").onsubmit = submitAddItemForm
 
-    const now = new Date()
-    const today = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
-    shuffleList(today.getTime())
+    const seed = new Date().getUTCFullYear() * new Date().getUTCMonth() ** new Date().getUTCDate();
+    shuffleList(seed)
 }
 
 window.onload = init
