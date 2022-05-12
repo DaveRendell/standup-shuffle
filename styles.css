@@ -11,6 +11,11 @@ main {
     background-color: transparent;
     border: none;
     cursor: pointer;
+    border-radius: 0.25rem;
+}
+
+.delete-button:hover {
+    background-color: #f3f3f3;
 }
 
 li {

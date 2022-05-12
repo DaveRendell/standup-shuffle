@@ -1,5 +1,6 @@
 function submitShuffleForm(e) {
     e.preventDefault()
+    document.getElementById("list-description").innerHTML = "Showing a random order. Refresh the page to get today's default order."
     shuffleList()
 }
 
@@ -23,12 +24,9 @@ function getItemsFromQuery() {
     return items
 }
 
-function shuffleList() {
+function shuffleList(seed = Math.random()) {
     const items = getItemsFromQuery()
-    const shuffledItems = items
-        .map((item) => ( {rank: Math.random(), item }))
-        .sort((a, b) => a.rank - b.rank)
-        .map(({ item }) => item)
+    const shuffledItems = shuffle(items, seed)
     
     populateList(shuffledItems)
 }
@@ -65,11 +63,37 @@ function populateList(items) {
     })
 }
 
+// https://stackoverflow.com/a/53758827
+function shuffle(array, seed) {
+    var m = array.length, t, i;
+
+    // While there remain elements to shuffle…
+    while (m) {
+        // Pick a remaining element…
+        i = Math.floor(random(seed) * m--)
+
+        // And swap it with the current element.
+        t = array[m];
+        array[m] = array[i];
+        array[i] = t;
+        ++seed
+    }
+
+return array;
+}
+  
+function random(seed) {
+    var x = Math.sin(seed++) * 10000; 
+    return x - Math.floor(x);
+}
+
 function init() {
     document.getElementById("shuffle-form").onsubmit = submitShuffleForm
     document.getElementById("add-item-form").onsubmit = submitAddItemForm
 
-    shuffleList()
+    const now = new Date()
+    const today = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
+    shuffleList(today.getTime())
 }
 
 window.onload = init
